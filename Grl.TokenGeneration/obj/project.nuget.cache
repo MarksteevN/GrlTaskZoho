@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "YaLrmATaBsOsiV7zYRU77otgSqlBVtEzKgjp9de8zDOhZ61PMsWIu7mjKK4D5ra1rC+S+MFp8pCNxvSKy2GSwQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\GRL\\source\\repos\\GrlTask\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\GRL\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

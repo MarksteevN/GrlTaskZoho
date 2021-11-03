@@ -1,0 +1,14 @@
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\Grl.TokenGeneration.deps.json
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\Grl.TokenGeneration.dll
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\ref\Grl.TokenGeneration.dll
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\Grl.TokenGeneration.pdb
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\Grl.Api.dll
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\bin\Debug\net5.0\Grl.Api.pdb
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.csproj.AssemblyReference.cache
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.AssemblyInfoInputs.cache
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.AssemblyInfo.cs
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.csproj.CoreCompileInputs.cache
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.dll
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\ref\Grl.TokenGeneration.dll
+C:\Users\GRL\source\repos\GrlTask\Grl.TokenGeneration\obj\Debug\net5.0\Grl.TokenGeneration.pdb
