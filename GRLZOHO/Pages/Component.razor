@@ -1,0 +1,59 @@
+﻿@page "/projectlist1"
+@using GRLZOHO.Data.projectclasslist;
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+
+
+    <table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th>Project Name</th>
+        </tr>
+    </thead>
+    @foreach (var forecast in Project_List)
+    {
+        <tbody>
+        <tr>
+           
+                <td>@forecast</td>
+            
+        </tr>
+    </tbody>
+    }
+    </table>
+    
+   
+
+
+
+
+<button class="btn btn-danger" @onclick="Deserialized"> Click Me to See Magic </button>
+@code {
+    public int No_Of_Projects { get; set; }
+    public List<string> Project_List { get; set; }
+    public int jsonstring { get; set; }
+    protected override void OnInitialized()
+    {
+        Project_List = new List<string>();
+        //Deserialized();
+    }
+    public void Deserialized(){
+        Project_List = new List<string>();
+        //string Filepath = @"D:\GitHub\GRLZOHO\GRLZOHO\wwwroot\Jsonfiles\json.json";
+        string Filepath = @"D:\GitHub\GRLZOHO\GRLZOHO\wwwroot\Textfiles\json.txt";
+
+        var myJsonString = File.ReadAllText(Filepath);
+        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
+        int jsonstring = myJsonObject.projects.Count;
+
+        for( int i = 0; i < jsonstring; i++)
+        {
+            Project_List.Add(myJsonObject.projects[i].name);
+            //UserAuthenticationHelper.Sleep(2000);
+            //Console.WriteLine(Project_List);
+            //Console.WriteLine(myJsonObject.projects[i].link.self.url);
+        }
+        //Console.ReadLine();
+	}
+
+}

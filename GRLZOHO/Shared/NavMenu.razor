@@ -1,0 +1,75 @@
+﻿@using Pages;
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">GRLZOHO</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" @onclick = "Api" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Generate Token
+            </NavLink>
+        </div>
+        @if (Project_List == null)
+        {
+            <text>Loading...</text>
+        }
+        else
+        {
+            @foreach (var item in Project_List)
+            {
+                <div class="nav-item px-3 box">                    
+                    <NavLink class="nav-link" href="projectlist" @onclick = "projectlink1" Match="NavLinkMatch.All">
+                        <span aria-hidden="true"></span> @item
+                    </NavLink>                       
+                </div>
+            }
+        }
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    public List<string> Project_List { get; set; }
+    public List<string> Project_Link { get; set; }
+    public int jsoncount { get; set; }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    protected override void OnInitialized() 
+    {
+        Project_List = new List<string>();   
+        Project_Link = new List<string>();
+    }
+    public void Api()
+    {
+        // Calling the Method to regenerates the Access Token
+        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
+        // Setting the method to get and calling a operations method to get the project list
+        RegenerateAcc_Token.Operations(Linksforall.AllProjects, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
+        //Deserialized();
+        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(RegenerateAcc_Token.jstring);
+        jsoncount = myJsonObject.projects.Count;
+        for( int i = 0; i < jsoncount; i++)
+        {
+            Project_List.Add(myJsonObject.projects[i].name);
+            Project_Link.Add(myJsonObject.projects[i].link.self.url);
+            //Project_Link.Add(myJsonObject.projects[i].link.self.url);
+        }        
+    }
+       
+    public void projectlink1()
+    {       
+        ProjectListDetail projectListDetail = new ProjectListDetail();
+        projectListDetail.projectlink2(Project_Link[9]);     
+    }
+}
