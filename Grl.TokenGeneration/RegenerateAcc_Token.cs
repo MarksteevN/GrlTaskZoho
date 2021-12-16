@@ -74,7 +74,8 @@ namespace Grl.TokenGeneration
             jstring = " " + Output;
             //Console.WriteLine(jstring);
             //Creates a text file and stores the output(It acts as a temporary file)
-            //System.IO.File.WriteAllText(@"D:\Github Files\GRLZOHO\GRLZOHO\wwwroot\Textfiles\Temporary_File.txt", jstring);
+            //string filep = Directory.GetCurrentDirectory();
+            //System.IO.File.WriteAllText(filep + @"\Appdata\Projects.txt", jstring);
             client.Dispose();
         }
     }

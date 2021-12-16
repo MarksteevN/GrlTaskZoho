@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github Files\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj": {}
+    "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj": {}
   },
   "projects": {
-    "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj": {
+    "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+        "projectUniqueName": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
         "projectName": "Grl.Api",
-        "projectPath": "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
-        "packagesPath": "C:\\Users\\GRL\\.nuget\\packages\\",
-        "outputPath": "D:\\Github Files\\GRLZOHO\\Grl.Api\\obj\\",
+        "projectPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+        "packagesPath": "C:\\Users\\GTrusted\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GRL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GTrusted\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,17 +68,17 @@
         }
       }
     },
-    "D:\\Github Files\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj": {
+    "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github Files\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj",
+        "projectUniqueName": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj",
         "projectName": "Grl.TokenGeneration",
-        "projectPath": "D:\\Github Files\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj",
-        "packagesPath": "C:\\Users\\GRL\\.nuget\\packages\\",
-        "outputPath": "D:\\Github Files\\GRLZOHO\\Grl.TokenGeneration\\obj\\",
+        "projectPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.TokenGeneration\\Grl.TokenGeneration.csproj",
+        "packagesPath": "C:\\Users\\GTrusted\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.TokenGeneration\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GRL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GTrusted\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,8 +92,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj": {
-                "projectPath": "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj"
+              "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj": {
+                "projectPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj"
               }
             }
           }

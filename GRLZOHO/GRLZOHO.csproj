@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Grl.TokenGeneration\Grl.TokenGeneration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Issuelist_pro\" />
+  </ItemGroup>
+
 </Project>

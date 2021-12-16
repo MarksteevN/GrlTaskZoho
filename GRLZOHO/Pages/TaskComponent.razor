@@ -1,0 +1,82 @@
+﻿@page "/projectlist/task"
+@using GRLZOHO.Data.tasklist_pro
+
+<HorizontalNavMenu></HorizontalNavMenu>
+<br />
+<style>
+    .center{
+        text-align:center;
+    }
+    a{
+        text-decoration : none;
+    }
+</style>
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center">Task Name</th>
+            @*<th>Status</th>
+            <th>Tag</th>
+            <th>Start Date</th>
+            <th>Due Date</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in T_Name.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                <tr>
+                    <td><a href="projectlist/task/taskdetails" @onclick = "(()=> Select_Task(index))"> @value</a></td>                
+                </tr>
+            }
+        @*@foreach (var dummy1 in T_Name)
+        { 
+            <tr>
+                <td>@dummy1</td>                
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+@code {
+    public List<string> T_Name { get; set; }
+    public List<string> T_Link { get; set; }
+
+    protected override void OnInitialized() 
+    {
+        T_Name = new List<string>();
+        T_Link = new List<string>();
+        taskDetails_all();
+    }
+    public void taskDetails_all()
+    {
+        string filep = Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllText(filep + @"\Appdata\All_Tasks_SP.txt", RegenerateAcc_Token.jstring);
+        string FilePath = @"C:\Users\GTrusted\Downloads\GRLZOHO\GRLZOHO\GRLZOHO\Appdata\All_Tasks_SP.txt";
+        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<TaskDetails>(myJsonString);
+        if (myJsonObject != null)
+        {
+            Console.WriteLine(myJsonObject);
+            for (var i = 0; i < myJsonObject.tasks.Count; i++)
+            {
+                T_Name.Add(myJsonObject.tasks[i].name);
+                T_Link.Add(myJsonObject.tasks[i].link.self.url);
+                Console.WriteLine(T_Name);
+            }
+        }
+        else
+        {
+            Console.WriteLine("There is no tasks found in database");
+        }
+
+        
+        
+    }
+    public void Select_Task(int indNo)
+    {
+        HorizontalNavMenu horizontalNavMenu = new HorizontalNavMenu();
+        horizontalNavMenu.St_Pt_Url(T_Link[indNo]);
+    }
+}

@@ -1,0 +1,43 @@
+﻿@page "/projectlist/task/taskdetails"
+
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th>Task Name</th>           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in T_Name.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                <tr>
+                    <td><a href="projectlist/task/taskdetails" @onclick = "(()=> Select_Task(index))"> @value</a></td>                
+                </tr>
+            }
+        @*@foreach (var dummy1 in T_Name)
+        { 
+            <tr>
+                <td>@dummy1</td>                
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Task_Details();
+    }
+    public void Task_Details()
+    {
+        string filep = Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllText(filep + @"\Appdata\Single_TaskDetails).txt", RegenerateAcc_Token.jstring);
+        // Location of the filepath to Read and to deserialize the data
+        string FilePath = @"C:\Users\GTrusted\Downloads\GRLZOHO\GRLZOHO\GRLZOHO\Appdata\Single_TaskDetails.txt";
+        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<TaskDetails>(myJsonString);
+
+        Console.WriteLine(RegenerateAcc_Token.jstring);
+    }
+}

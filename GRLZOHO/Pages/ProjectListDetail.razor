@@ -1,66 +1,7 @@
 ﻿@page "/projectlist"
-<div class="header">
-  <a href="#" class="logo">Granite River Labs</a>
-  <div class="header-right">
-    <a href="#" @onclick = "taskssss">Task</a>
-    <a href="#">Milestone</a>
-    <a href="#" @onclick = "bugsssss">Issue</a>
-    <a href="#" @onclick = "proje">Project1</a>
-  </div>
-</div>
 
-@*<button @onclick="Api1" >Project List</button>*@
+<HorizontalNavMenu></HorizontalNavMenu>
+
 @code {
-    //NavMenu navMenu = new NavMenu();
-    //string Linksto = 
-    //NavMenu.Api.Project_Link;
-    //NavMenu.Project_Link;
-    public List<string> Project_Link { get; set; }
-    public string project_det { get; set; }
-    public string super_id { get; set; }
-    protected override void OnInitialized() 
-    {
-        Project_Link = new List<string>();   
-        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
-    }
-    public void Api1()
-    {
-        // Calling the Method to regenerates the Access Token
-        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
-        // Setting the method to get and calling a operations method to get the project list
-        //RegenerateAcc_Token.Operations(Linksforall.AllProjects, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-        //Deserialized();
-        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(RegenerateAcc_Token.jstring);
-        for( int i = 0; i < myJsonObject.projects.Count; i++)
-        {
-            super_id = myJsonObject.projects[i].id_string;
-            //Project_Link.Add(myJsonObject.projects[i].link.self.url);
-            //Console.WriteLine(myJsonObject.projects[i].link.self.url);
-            //Console.WriteLine(myJsonObject.projects[i].id_string);
 
-            //Console.WriteLine(@"https://projectsapi.zoho.com/restapi/portal/34470962/projects/{0}", super_id);
-        }
-        string project_det = @"https://projectsapi.zoho.com/restapi/portal/34470962/projects/?id_string="+super_id;
-        Console.WriteLine(project_det);
-
-        RegenerateAcc_Token.Operations(project_det, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-
-    }
-    public void bugsssss()
-    {
-        RegenerateAcc_Token.Operations(Linksforall.bugsss, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-    }
-    public void taskssss()
-    {
-        RegenerateAcc_Token.Operations(Linksforall.Tasksss, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-    }
-    public void proje()
-    {
-        RegenerateAcc_Token.Operations(Linksforall.AProjects, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-    }
-    public void projectlink2(string url)
-    {        
-        RegenerateAcc_Token.Operations(url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-        Console.WriteLine(url);
-    }
 }

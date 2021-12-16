@@ -70,19 +70,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GRL\\.nuget\\packages\\": {}
+    "C:\\Users\\GTrusted\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+      "projectUniqueName": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
       "projectName": "Grl.Api",
-      "projectPath": "D:\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
-      "packagesPath": "C:\\Users\\GRL\\.nuget\\packages\\",
-      "outputPath": "D:\\Github Files\\GRLZOHO\\Grl.Api\\obj\\",
+      "projectPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+      "packagesPath": "C:\\Users\\GTrusted\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\GRL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GTrusted\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
