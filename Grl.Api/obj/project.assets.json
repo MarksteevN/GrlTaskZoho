@@ -70,19 +70,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GTrusted\\.nuget\\packages\\": {}
+    "C:\\Users\\GRL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+      "projectUniqueName": "D:\\Marksteev_GRL\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
       "projectName": "Grl.Api",
-      "projectPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
-      "packagesPath": "C:\\Users\\GTrusted\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\obj\\",
+      "projectPath": "D:\\Marksteev_GRL\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+      "packagesPath": "C:\\Users\\GRL\\.nuget\\packages\\",
+      "outputPath": "D:\\Marksteev_GRL\\Github Files\\GRLZOHO\\Grl.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\GTrusted\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GRL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -132,7 +132,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

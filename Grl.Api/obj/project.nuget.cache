@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZRS3zNF8d443+hnmIBeJk90B1sKTkMLby2PHOTRJdMBLpXKwdlQ2y/om/5xZL2/lEYMIkv5ZrehHPtih7xc0XQ==",
+  "dgSpecHash": "6y73bK2JQJD52q3v2IOMQ+Yf+fZM9458hWRNBlpSbjZXvf5Jjuv2DogKc86H26Gt7SzZyvuMXV2qAjS8KjuUOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\GTrusted\\Downloads\\GRLZOHO\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
+  "projectFilePath": "D:\\Marksteev_GRL\\Github Files\\GRLZOHO\\Grl.Api\\Grl.Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\GTrusted\\.nuget\\packages\\json.net\\1.0.33\\json.net.1.0.33.nupkg.sha512",
-    "C:\\Users\\GTrusted\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\GRL\\.nuget\\packages\\json.net\\1.0.33\\json.net.1.0.33.nupkg.sha512",
+    "C:\\Users\\GRL\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

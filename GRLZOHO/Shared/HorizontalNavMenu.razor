@@ -34,7 +34,7 @@
         string filep = Directory.GetCurrentDirectory();
         System.IO.File.WriteAllText(filep + @"\Appdata\Single_Project.txt", RegenerateAcc_Token.jstring);
         // Location of the filepath to Read and to deserialize the data
-        string FilePath = @"C:\Users\GTrusted\Downloads\GRLZOHO\GRLZOHO\GRLZOHO\Appdata\Single_Project.txt";
+        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Single_Project.txt";
         var myJsonString = File.ReadAllText(FilePath);
         var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
         string Task_url = myJsonObject.projects[ind].link.task.url;
