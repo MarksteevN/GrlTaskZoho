@@ -18,6 +18,7 @@
 @code {
     public List<string> Project_Link { get; set; }
     public List<string> Project_Task_Link { get; set; }
+    public string Task_url { get; set; }
 
     protected override void OnInitialized()
     {
@@ -37,12 +38,14 @@
         string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Single_Project.txt";
         var myJsonString = File.ReadAllText(FilePath);
         var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
-        string Task_url = myJsonObject.projects[ind].link.task.url;
-        Console.WriteLine(Task_url);
+        for (var i = 0; i < myJsonObject.projects.Count; i++)
+        {
+            Task_url = myJsonObject.projects[i].link.task.url;
+            Console.WriteLine(Task_url);
+        }
+        //string Task_url = myJsonObject.projects[ind].link.task.url;
+        //Console.WriteLine(Task_url);
         RegenerateAcc_Token.Operations(Task_url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-        
-        
-
     }
    
     public void St_Pt_Url(string url)

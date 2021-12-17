@@ -1,4 +1,99 @@
-namespace GRLZOHO.Data.tasklist_pro{ 
+﻿namespace GRLZOHO.Data
+{
+    public class Owner
+    {
+        public string zpuid { get; set; }
+        public string name { get; set; }
+        public string id { get; set; }
+        public string email { get; set; }
+    }
+
+    public class Details
+    {
+        public List<Owner> owners { get; set; }
+    }
+
+    public class CustomField
+    {
+        public string column_name { get; set; }
+        public string label_name { get; set; }
+        public string value { get; set; }
+    }
+
+    public class FOLLOWER
+    {
+        public string FPHOTO { get; set; }
+        public string FOLLOWERID { get; set; }
+        public string FNAME { get; set; }
+    }
+
+    public class TaskFollowers
+    {
+        public string FOLUSERS { get; set; }
+        public int FOLLOWERSIZE { get; set; }
+        public List<FOLLOWER> FOLLOWERS { get; set; }
+    }
+
+    public class Tasklist
+    {
+        public string name { get; set; }
+        public string id_string { get; set; }
+        public string id { get; set; }
+    }
+
+    public class Status
+    {
+        public string name { get; set; }
+        public string id { get; set; }
+        public string type { get; set; }
+        public string color_code { get; set; }
+    }
+
+    public class Timesheet
+    {
+        public string url { get; set; }
+    }
+
+    public class Web
+    {
+        public string url { get; set; }
+    }
+
+    public class Self
+    {
+        public string url { get; set; }
+    }
+
+    public class Subtask
+    {
+        public string url { get; set; }
+    }
+
+    public class Link
+    {
+        public Timesheet timesheet { get; set; }
+        public Web web { get; set; }
+        public Self self { get; set; }
+        public Subtask subtask { get; set; }
+    }
+
+    public class ASSOCIATEDTEAMS
+    {
+        public string AnyTeam { get; set; }
+    }
+
+    public class GROUPNAME
+    {
+        public ASSOCIATEDTEAMS ASSOCIATED_TEAMS { get; set; }
+        public int ASSOCIATED_TEAMS_COUNT { get; set; }
+        public bool IS_TEAM_UNASSIGNED { get; set; }
+    }
+
+    public class LogHours
+    {
+        public string non_billable_hours { get; set; }
+        public string billable_hours { get; set; }
+    }
 
     public class TaskInfo
     {
@@ -26,7 +121,7 @@ namespace GRLZOHO.Data.tasklist_pro{
         public Tasklist tasklist { get; set; }
         public string last_updated_time_format { get; set; }
         public string billingtype { get; set; }
-        public int order_sequence { get; set; }
+        public long order_sequence { get; set; }
         public Status status { get; set; }
         public string end_date { get; set; }
         public bool is_sprints_task { get; set; }
@@ -55,4 +150,8 @@ namespace GRLZOHO.Data.tasklist_pro{
         public LogHours log_hours { get; set; }
     }
 
+    public class TaskDetails
+    {
+        public List<TaskInfo> tasks { get; set; }
+    }
 }

@@ -73,7 +73,7 @@
         jsoncount = myJsonObject.projects.Count;
         
         //Iterates through all the projects name and link
-        for( int i = 0; i < jsoncount; i++)
+        for( var i = 0; i < jsoncount; i++)
         {
             Project_Name.Add(myJsonObject.projects[i].name);
             Project_Link.Add(myJsonObject.projects[i].link.self.url);

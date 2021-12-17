@@ -1,5 +1,5 @@
 ﻿@page "/projectlist/task"
-@using GRLZOHO.Data.tasklist_pro
+@using GRLZOHO.Data
 
 <HorizontalNavMenu></HorizontalNavMenu>
 <br />
@@ -45,6 +45,7 @@
 
     protected override void OnInitialized() 
     {
+        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
         T_Name = new List<string>();
         T_Link = new List<string>();
         taskDetails_all();
@@ -58,13 +59,21 @@
         var myJsonObject = JsonConvert.DeserializeObject<TaskDetails>(myJsonString);
         if (myJsonObject != null)
         {
-            Console.WriteLine(myJsonObject);
-            for (var i = 0; i < myJsonObject.tasks.Count; i++)
+            if(myJsonObject.tasks == null)
             {
-                T_Name.Add(myJsonObject.tasks[i].name);
-                T_Link.Add(myJsonObject.tasks[i].link.self.url);
-                Console.WriteLine(T_Name);
+                Console.WriteLine("No tasks found");
             }
+            else
+            {
+                Console.WriteLine(myJsonObject);
+                for (var i = 0; i < myJsonObject.tasks.Count; i++)
+                {
+                    T_Name.Add(myJsonObject.tasks[i].name);
+                    T_Link.Add(myJsonObject.tasks[i].link.self.url);
+                    Console.WriteLine(T_Name);
+                }
+            }
+            
         }
         else
         {
