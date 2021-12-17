@@ -1,8 +1,7 @@
-﻿@page "/projectlist/task"
-@using GRLZOHO.Data
+﻿@page "/projectlist/Milestone"
 
-@*<HorizontalNavMenu></HorizontalNavMenu>*@
-
+@*<HorizontalNavMenu></HorizontalNavMenu>
+*@
 <br />
 <br />
 <style>
@@ -16,7 +15,7 @@
 <table class="table table-bordered table-striped mb-0">
     <thead class="bg-warning">
         <tr>
-            <th class="center">Task Name</th>
+            <th class="center">Milestone Name</th>
             @*<th>Status</th>
             <th>Tag</th>
             <th>Start Date</th>
@@ -24,12 +23,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in T_Name.Select((value, i) => new { i, value }))
+        @foreach (var item in M_Name.Select((value, i) => new { i, value }))
             {
                 var value = item.value;
                 var index = item.i;
                 <tr>
-                    <td><a href="projectlist/task/taskdetails" @onclick = "(()=> Select_Task(index))"> @value</a></td>                
+                    <td><a href="projectlist/task/milestonedetails" @onclick = "(()=> Select_Milestone(index))"> @value</a></td>                
                 </tr>
             }
         @*@foreach (var dummy1 in T_Name)
@@ -42,52 +41,53 @@
 </table>
 
 @code {
-    public List<string> T_Name { get; set; }
-    public List<string> T_Link { get; set; }
+    public List<string> M_Name { get; set; }
+    public List<string> M_Link { get; set; }
 
     protected override void OnInitialized() 
     {
         //RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
-        T_Name = new List<string>();
-        T_Link = new List<string>();
+        M_Name = new List<string>();
+        M_Link = new List<string>();
         taskDetails_all();
     }
     public void taskDetails_all()
     {
         string filep = Directory.GetCurrentDirectory();
-        System.IO.File.WriteAllText(filep + @"\Appdata\All_Tasks_SP.txt", RegenerateAcc_Token.jstring);
-        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\All_Tasks_SP.txt";
+        System.IO.File.WriteAllText(filep + @"\Appdata\All_Milestones_SP.txt", RegenerateAcc_Token.jstring);
+        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\All_Milestones_SP.txt";
         var myJsonString = File.ReadAllText(FilePath);
-        var myJsonObject = JsonConvert.DeserializeObject<TaskDetails>(myJsonString);
+        var myJsonObject = JsonConvert.DeserializeObject<MilestoneDetails>(myJsonString);
         if (myJsonObject != null)
         {
-            if(myJsonObject.tasks == null)
+            if (myJsonObject.milestones == null)
             {
-                Console.WriteLine("No tasks found");
+                Console.WriteLine("No Milestones found");
             }
             else
             {
                 Console.WriteLine(myJsonObject);
-                for (var i = 0; i < myJsonObject.tasks.Count; i++)
+                for (var i = 0; i < myJsonObject.milestones.Count; i++)
                 {
-                    T_Name.Add(myJsonObject.tasks[i].name);
-                    T_Link.Add(myJsonObject.tasks[i].link.self.url);
-                    Console.WriteLine(T_Name);
+                    M_Name.Add(myJsonObject.milestones[i].name);
+                    M_Link.Add(myJsonObject.milestones[i].link.self.url);
+                    Console.WriteLine(M_Name[i]);
+                    Console.WriteLine(M_Link[i]);
                 }
             }
-            
+
         }
         else
         {
             Console.WriteLine("There is no tasks found in database");
         }
-
-        
-        
     }
-    public void Select_Task(int indNo)
+    public void Select_Milestone(int indNo)
     {
         HorizontalNavMenu horizontalNavMenu = new HorizontalNavMenu();
-        horizontalNavMenu.St_Pt_Url(T_Link[indNo]);
+        horizontalNavMenu.St_Pt_Url(M_Link[indNo]);
     }
+        
+        
+    
 }

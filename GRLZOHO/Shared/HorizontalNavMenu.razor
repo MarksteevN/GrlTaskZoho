@@ -8,8 +8,8 @@
 
 <div class="topnav" id="myTopnav">
   <a href="projectlist/task" @onclick = "All_tasks">Task</a>
-  <a href="#">Milestone</a>
-  <a href="#" >Issue</a>
+  <a href="projectlist/Milestone" @onclick = "All_Milestones">Milestone</a>
+  <a href="projectlist/Issues" @onclick = "All_Issues">Issue</a>
   @*<a href="javascript:void(0);" class="icon" @onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>*@
@@ -19,12 +19,14 @@
     public List<string> Project_Link { get; set; }
     public List<string> Project_Task_Link { get; set; }
     public string Task_url { get; set; }
+    public string Milestone_url { get; set; }
+    public string Issue_url { get; set; }
 
     protected override void OnInitialized()
     {
         Project_Link = new List<string>();
         Project_Task_Link = new List<string>();
-        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
+        //RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
     }
 
     public void All_tasks()
@@ -47,7 +49,37 @@
         //Console.WriteLine(Task_url);
         RegenerateAcc_Token.Operations(Task_url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
     }
-   
+    public void All_Milestones()
+    {
+        string filep = Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllText(filep + @"\Appdata\Single_Milestone.txt", RegenerateAcc_Token.jstring);
+        // Location of the filepath to Read and to deserialize the data
+        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Single_Milestone.txt";
+        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
+        for (var i = 0; i < myJsonObject.projects.Count; i++)
+        {
+            Milestone_url = myJsonObject.projects[i].link.milestone.url;
+            Console.WriteLine(Milestone_url);
+        }
+        RegenerateAcc_Token.Operations(Milestone_url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
+    }
+    public void All_Issues()
+    {
+        string filep = Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllText(filep + @"\Appdata\Single_Issue.txt", RegenerateAcc_Token.jstring);
+        // Location of the filepath to Read and to deserialize the data
+        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Single_Issue.txt";
+        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
+        for (var i = 0; i < myJsonObject.projects.Count; i++)
+        {
+            Issue_url = myJsonObject.projects[i].link.bug.url;
+            Console.WriteLine(Issue_url);
+        }
+        RegenerateAcc_Token.Operations(Issue_url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
+    }
+
     public void St_Pt_Url(string url)
     {        
         RegenerateAcc_Token.Operations(url, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());

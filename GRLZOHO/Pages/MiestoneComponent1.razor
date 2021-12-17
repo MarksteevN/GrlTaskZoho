@@ -1,0 +1,107 @@
+﻿@page "/projectlist/task/milestonedetails"
+
+<style>
+    .center{
+        text-align:center;
+    }
+    .divLeft{
+        width: 50%;
+        float:left;
+        padding:10px;
+    }
+    .divRight{
+        width: 50%;
+        float:left;
+        padding:10px;
+    }
+    
+</style>
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center" colspan = "2">Task Details  of @Milestone_Name</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th> Project Name </th>
+            <td> @Project_Name </td>
+        </tr>
+        <tr>
+            <th> Milestone Name </th>
+            <td> @Milestone_Name </td>
+        </tr>
+        <tr>
+            <th> Owner Name </th>
+            <td> @Owner_M_name </td>
+        </tr>
+        <tr>
+            <th> Status </th>
+            <td> @Statuss_M </td>
+        </tr>
+        <tr>
+            <th> Start Date </th>
+            <td> @Startdate_M </td>
+        </tr>
+        <tr>
+            <th> End Date </th>
+            <td> @EndDtae_M </td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    public string Project_Name { get; set; }//
+    public string Milestone_Name { get; set; }//
+    public string Owner_M_name { get; set; }//
+    public string Statuss_M { get; set; }//
+    public string Startdate_M { get; set; }//
+    public string EndDtae_M { get; set; }//
+    protected override void OnInitialized()
+    {
+        //RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
+
+        Milestone_Details();
+    }
+    public void Milestone_Details()
+    {
+        int indNo = 0;
+        string filep = Directory.GetCurrentDirectory();
+        System.IO.File.WriteAllText(filep + @"\Appdata\Selected_Milestone.txt", RegenerateAcc_Token.jstring);
+        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Selected_Milestone.txt";
+        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<MilestoneDetails>(myJsonString);
+        Project_Name = myJsonObject.milestones[indNo].project.name;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine(" Project Name " + Project_Name);
+        Console.WriteLine("----------------------------------------");
+
+
+        Milestone_Name = myJsonObject.milestones[indNo].name;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Milestone_Name" + Milestone_Name);
+        Console.WriteLine("----------------------------------------");
+
+        Owner_M_name = myJsonObject.milestones[indNo].owner_name;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Owner_M_name" + Owner_M_name);
+        Console.WriteLine("----------------------------------------");
+
+        Statuss_M = myJsonObject.milestones[indNo].status_det.name;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Status" + Statuss_M);
+        Console.WriteLine("----------------------------------------");
+
+        Startdate_M = myJsonObject.milestones[indNo].start_date;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("Start Date" + Startdate_M);
+        Console.WriteLine("----------------------------------------");
+        EndDtae_M = myJsonObject.milestones[indNo].end_date;
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("End Date" + EndDtae_M);
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine(RegenerateAcc_Token.jstring);
+        Console.WriteLine("----------------------------------------");
+    }
+}
