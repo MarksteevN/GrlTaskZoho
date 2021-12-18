@@ -1,138 +1,111 @@
-﻿@using System;
-@using System.Timers;
-
+﻿@using GRLZOHO.Data.projectclasslist
+@using Newtonsoft.Json
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Granite River Labs</a>
+        <a class="navbar-brand" href="">GRLZOHO</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
+@*
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" @onclick = "Deserialized" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Project List
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="Api" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Regenerate Token
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="projectlist">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Project list
+            </NavLink>
+        </div>
+        
+    </nav>
+</div>*@
+
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" @onclick = "Main12" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="" @onclick = "Api" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Generate Token
             </NavLink>
-            <NavLink class="nav-link" href="" @onclick = "Load_Projects" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Load Projects
-            </NavLink>
         </div>
-        @if (Project_Name == null)
+        @foreach (var item in Project_List)
         {
-            <text>Loading...</text>
-        }
-        else
-        {
-            // By adding Select cmd in foreach loop we can able to get the item name along the index of that equivalent item during onclick 
-            foreach (var item in Project_Name.Select((value, i) => new { i, value }))
-            {
-                var value = item.value; // value refers the item name
-                var index = item.i; // index refers the equivalent index of the value selected
-                <div class="nav-item px-3 box">
-                    <NavLink class="nav-link" href="projectlist" @onclick = "() => Select_Project(index)" Match="NavLinkMatch.All">
-                        <span aria-hidden="true"></span> @value
-                    </NavLink>
-                </div>
-            }
+            @*<div class="nav-item px-3 box">
+                <NavLink class="nav-link" href="" @onclick="Deserialized" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>*@
+            <div class="nav-item px-3 box">
+                <NavLink class="nav-link" href="taskpage" Match="NavLinkMatch.All">
+                    <span aria-hidden="true"></span> @item
+                </NavLink>
+            </div>
         }
     </nav>
 </div>
 
+
+
 @code {
     private bool collapseNavMenu = true;
+
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private static System.Timers.Timer aTimer;
-
-    public List<string> Project_Name { get; set; }
-    public List<string> Project_Link { get; set; }
-    public int jsoncount { get; set; }
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
-    protected override void OnInitialized() 
+    private void Api()
     {
-
-        Project_Name = new List<string>();   
-        Project_Link = new List<string>();
+        UserAuthenticationHelper user = new UserAuthenticationHelper();
+        user.WithOutTimer();
     }
-    public void Main12()
+    protected override void OnInitialized()
     {
-        RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
+        Project_List = new List<string>();
+        UserAuthenticationHelper user = new UserAuthenticationHelper();
+        user.WithOutTimer();
+        Deserialized();
     }
-    //public void Main12()
-    //{
-    //    SetTimer();        
-    //    Console.ReadLine();
-    //    aTimer.Stop();
-    //    aTimer.Dispose();        
-    //}
-    //private static void SetTimer()
-    //{
-    //    aTimer = new System.Timers.Timer(1000);
-    //    aTimer.Elapsed += OnTimedEvent;
-    //    aTimer.AutoReset = true;
-    //    aTimer.Enabled = true;
-    //}
-    //private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-    //{
-    //    RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
-    //    string tsshhd = RegenerateAcc_Token.access_token;
-    //    Console.WriteLine(tsshhd);
-    //}
+    public List<string> Project_List { get; set; }
+    public int jsonstring { get; set; }
 
-    public void Load_Projects()
+    public void Deserialized()
     {
-       
+        Project_List = new List<string>();
+        //string Filepath = @"D:\GitHub\GRLZOHO\GRLZOHO\wwwroot\Jsonfiles\json.json";
+        string Filepath = @"E:\Marksteev\Github_Files\GRLZOHO\GRLZOHO\wwwroot\Textfiles\Project.txt";
 
-
-            // Calling the Method to regenerates the Access Token
-
-            //Thread thread = new Thread(new ThreadStart(Main12));
-            //thread.Start();
-
-            string access1 = RegenerateAcc_Token.access_token;
-            // Setting the method to get and calling a operations method to get the project list
-            if(access1 != null)
-            {
-                RegenerateAcc_Token.Operations(Linksforall.AllProjects, access1, EnumClass.METHOD.GET.ToString());
-            }
-            else
-            {
-                Console.WriteLine("Generate token first ");
-                Console.ReadKey();
-            }
-
-        //Creating the Projects.txt file and storing the obtained dat in the text file specified
-        string filep = Directory.GetCurrentDirectory();
-        System.IO.File.WriteAllText(filep + @"\Appdata\Projects.txt", RegenerateAcc_Token.jstring);
-        
-        // Location of the filepath to Read and to deserialize the data
-        string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\Projects.txt";
-        var myJsonString = File.ReadAllText(FilePath);
+        var myJsonString = File.ReadAllText(Filepath);
         var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(myJsonString);
-        
-        //Total count of the projects
-        jsoncount = myJsonObject.projects.Count;
-        
-        //Iterates through all the projects name and link
-        for( var i = 0; i < jsoncount; i++)
+        int jsonstring = myJsonObject.projects.Count;
+
+
+        for( int i = 0; i < jsonstring; i++)
         {
-            Project_Name.Add(myJsonObject.projects[i].name);
-            Project_Link.Add(myJsonObject.projects[i].link.self.url);
+            Project_List.Add(myJsonObject.projects[i].name);
+           // Console.WriteLine(Project_List);
+            //Console.WriteLine(myJsonObject.projects[i].link.self.url);
         }
-         
-    }
-
-    public void Select_Project(int indNo)
-    {
-        HorizontalNavMenu horizontalNavMenu = new HorizontalNavMenu();
-        horizontalNavMenu.St_Pt_Url(Project_Link[indNo]);
-
-    }
+	}
 }

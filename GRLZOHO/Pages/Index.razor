@@ -2,40 +2,16 @@
 @using Grl.TokenGeneration
 @using Data;
 
-@*<button @onclick = "Api">click me to c ui</button>*@
-@*@code{
+
+<button @onclick = "User_Interface">click me to c ui</button>
+@code{
     public void User_Interface()
     {
-        NavMenu navMenu = new NavMenu();
-        NavMenu.
+        
     }
     //public  void Api()
     //{
     //    UserAuthenticationHelper user = new UserAuthenticationHelper();
     //    user.Accesstokentimer();
     //}
-}*@
-
-@*@code{
-    public List<string> Project_Name { get; set; }
-
-    protected override void OnInitialized() 
-    {
-        Project_Name = new List<string>();   
-        
-    }
-    private void Api()
-    {
-         // Calling the Method to regenerates the Access Token
-       // RegenerateAcc_Token.RegenerateAccessToken(Linksforall.A_Token, EnumClass.METHOD.POST.ToString());
-        // Setting the method to get and calling a operations method to get the project list
-        RegenerateAcc_Token.Operations(Linksforall.AllProjects, RegenerateAcc_Token.access_token, EnumClass.METHOD.GET.ToString());
-        //Deserialized();
-        var myJsonObject = JsonConvert.DeserializeObject<ProjectDetails>(RegenerateAcc_Token.jstring);
-        for( int i = 0; i < myJsonObject.projects.Count; i++)
-        {
-            Project_Name.Add(myJsonObject.projects[i].name);
-            //Console.WriteLine(myJsonObject.projects[i].link.self.url);
-        }
-    }
-}*@
+}
