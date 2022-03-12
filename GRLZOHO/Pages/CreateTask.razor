@@ -1,0 +1,38 @@
+﻿@page "/Task/form"
+
+<PageTitle>Add Task</PageTitle>
+<h3>Create Task</h3>
+
+<EditForm Model="taskDetails" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <div style="width:60%" class="form-group">
+        <label style="text-align:left">Task Name : </label>
+        <InputText class="form-control" @bind-Value="taskDetails.Name" />
+        <ValidationMessage For="@(() => taskDetails.Name)" />
+
+        <label style="text-align:left">Task Description : </label>
+        <InputTextArea class="form-control" rows=5 @bind-Value="taskDetails.Description" />
+
+        <label style="text-align:left">Start Date : </label>
+        <InputDate class="form-control" @bind-Value="taskDetails.start_date" />
+        <ValidationMessage For="@(() => taskDetails.start_date)" />
+
+        <label style="text-align:left">End Date : </label>
+        <InputDate class="form-control" @bind-Value="taskDetails.end_date" />
+        <ValidationMessage For="@(() => taskDetails.end_date)" />
+
+        <label>Priority : </label>
+        <select class="form-control" @bind="taskDetails.Priority">
+            <option selected disabled>Choose Priority</option>
+            <option value="None">None</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <ValidationMessage For="@(() => taskDetails.Priority)" />
+    </div>
+    <br />
+    <button class="button button11" type="submit">Add</button>
+    <button class="button button11" onclick="window.close();">Close</button>
+    <button class="button button22" @onclick="reset" @onclick:preventDefault>Reset</button>
+</EditForm>

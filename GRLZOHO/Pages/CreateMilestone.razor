@@ -1,0 +1,36 @@
+﻿@page "/Milestone/form"
+
+<PageTitle>Add milestone</PageTitle>
+
+<h3>Create Milestone for @P_Name</h3>
+
+<EditForm Model="milestoneName" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <div style="width:60%" class="form-group">
+        <label style="text-align:left">Milestone Name : </label>
+        <InputText class="form-control" @bind-Value="milestoneName.Name" />
+        <ValidationMessage For="@(() => milestoneName.Name)" />
+
+        <label>Start Date : </label>
+        <InputDate class="form-control" @bind-Value="milestoneName.start_date" />
+        <ValidationMessage For="@(() => milestoneName.start_date)" />
+
+        <label>End Date : </label>
+        <InputDate class="form-control" @bind-Value="milestoneName.end_date" />
+        <ValidationMessage For="@(() => milestoneName.end_date)" />
+
+        <label>Flag : </label>
+        <select class="form-control" @bind="milestoneName.flag">
+            <option selected disabled>Choose flag</option>
+            <option value="internal">Internal</option>
+            <option value="external">External</option>
+        </select>
+        <ValidationMessage For="@(() => milestoneName.flag)" />
+    </div>
+
+    <br />
+
+    <button class="button button11" type="submit">Add</button>
+    <button class="button button11" onclick="window.close();">Close</button>
+    <button class="button button22" @onclick="reset" @onclick:preventDefault>Reset</button>
+</EditForm>

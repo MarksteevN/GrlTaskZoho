@@ -1,0 +1,32 @@
+﻿@page "/TaskList_Details"
+
+<PageTitle>@TaskListname</PageTitle>
+
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center" colspan="2">@TaskListname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th> Tasklist Name </th>
+            <td> @TaskListname </td>
+        </tr>
+        <tr>
+            <th> Open Tasks </th>
+            <td> @Open_task </td>
+        </tr>
+        <tr>
+            <th> Closed Tasks </th>
+            <td> @Closed_task </td>
+        </tr>
+        <tr>
+            <th> Flag </th>
+            <td> @Flag </td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="button button2" @onclick="RefreshSelectedTasklist">Refresh</button>
+<button class="button button2" onclick="window.close();">Close</button>

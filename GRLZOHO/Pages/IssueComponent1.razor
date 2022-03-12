@@ -1,0 +1,51 @@
+﻿@page "/Issue_Details"
+
+<PageTitle>@Bug_Title</PageTitle>
+
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center" colspan="2">@Bug_Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th> Bug Name </th>
+            <td> @Bug_Title </td>
+        </tr>
+        <tr>
+            <th> Assigned Person Name </th>
+            <td> @Assin_Name </td>
+        </tr>
+        <tr>
+            <th> Bug Number </th>
+            <td> @Bug_No </td>
+        </tr>
+        <tr>
+            <th> Total No of Comments </th>
+            <td> @No_of_Comments </td>
+        </tr>
+        <tr>
+            <th> Updated Date </th>
+            <td> @Updated_time </td>
+        </tr>
+        <tr>
+            <th> Reporting Person </th>
+            <td> @Report_Person </td>
+        </tr>
+        <tr>
+            <th> Status </th>
+            <td> @Status_I </td>
+        </tr>
+        <tr>
+            <th> Description </th>
+            <td> @((MarkupString)Description) </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<center>
+    <button class="button button2" @onclick="NavigateToNewTab">More Details...</button>
+    <button class="button button2" @onclick="RefreshSelectedIssue">Refresh</button>
+    <button class="button button2" onclick="window.close();">Close</button>
+</center>

@@ -1,0 +1,38 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid" >
+        <a style="float:left" class="navbar-brand" href="">Granite River Labs</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="ReloadProjects" Match="NavLinkMatch.All">
+                <span class="oi oi-reload " aria-hidden="true">Reload</span>
+            </NavLink>
+        </div>
+        @if (Project_Name == null)
+        {
+            <text>Loading...</text>
+        }
+        else
+        {
+            // By adding Select cmd in foreach loop we can able to get the item name along the index of that equivalent item during onclick
+            foreach (var item in Project_Name.Select((value, i) => new { i, value }))
+            {
+                var value = item.value; // value refers the item name
+                var index = item.i; // index refers the equivalent index of the value selected
+                <div class="nav-item px-3 box">
+                    <NavLink class="nav-link" href="" @onclick="() => Select_Project(index)" Match="NavLinkMatch.All">
+                        <div>
+                            @value
+                        </div>
+                    </NavLink>
+                </div>
+            }
+        }
+    </nav>
+</div>

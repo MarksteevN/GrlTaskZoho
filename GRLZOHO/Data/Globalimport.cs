@@ -1,0 +1,14 @@
+﻿global using Microsoft.JSInterop;
+global using Grl.TokenGeneration;
+global using GRLZOHO.Data;
+global using GRLZOHO.Shared;
+global using Microsoft.AspNetCore.Components;
+global using Newtonsoft.Json;
+global using static Grl.TokenGeneration.Global;
+global using System.ComponentModel.DataAnnotations;
+global using GRLZOHO.Data.projectclasslist;
+global using GRLZOHO.Pages;
+global using System.Collections;
+global using System.Text.RegularExpressions;
+global using System.Net.Http.Headers;
+global using Newtonsoft.Json.Linq;

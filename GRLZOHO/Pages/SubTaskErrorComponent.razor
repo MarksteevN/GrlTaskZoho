@@ -1,0 +1,21 @@
+﻿@page "/SubTask/NotFound"
+
+<center>
+    <img class="divclass" src="https://th.bing.com/th/id/OIP.nQrQFFg3mtb3-PxSKRewwAHaGp?pid=ImgDet&rs=1" style="width: 300px"/>
+    <div class="isa_error  center">
+        @Subtask_Error 
+    </div>
+</center>
+
+@code {
+    public string? Subtask_Error { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ST_Error();
+    }
+    public void ST_Error()
+    {
+        Subtask_Error = "There is No SubTask Found !!!";
+    }
+}

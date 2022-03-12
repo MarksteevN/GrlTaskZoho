@@ -1,0 +1,211 @@
+﻿@page "/"
+
+<PageTitle>@NavMenu.P_PName</PageTitle>
+
+<div>
+    <ul>
+        <li><a href="" @onclick="T_TTaskDetails">Tasks</a></li>
+        <li><a href="" @onclick="M_MMilestoneDetails">Milestones</a></li>
+        <li><a href="" @onclick="I_IIssueDetails">Issues</a></li>
+        <li><a href="" @onclick="D_DDocumentDetails">Document</a></li>
+        <li><a href="" @onclick="D_DocumentFolder">Folder</a></li>
+        <li><a href="" style="color:white;"> <p>@NavMenu.P_PName</p></a></li>
+        <li style="float:right;"><a style="color:white;" @onclick="RestoreAllFiles">Refresh</a></li>
+        <li style="float:right;"><a style="color:white;" @onclick="TaskMiles">View all</a></li>
+    </ul>
+</div>
+
+@if (Selection == true)
+{
+    <div class="Wrap">
+        <div class="row">
+            @*Milestone*@
+            <div class="column" style="background-color:#aaa;">
+                <h3 style="width:80%; float:left; padding-left: 10px;">Milestones</h3><a style="float: right; width:10%" href="" @onclick="NavigateToMileAdd"><span style="color:black; width:50%;" title="Add new Milestone" class="oi oi-plus" aria-hidden="true"></span></a><a style="float: right; width:10%" href="" @onclick="RefreshMilestone"><span style="color:black; width:50%;" title="Refresh Milestone" class="oi oi-reload" aria-hidden="true"></span></a>
+                @if (MilestoneFile == " ")
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Milestone_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in M_MName.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <div style="float:left; width:95%;">
+                                <p>
+                                    <a href="" @onclick="(()=> M_MMilestoneSelect(index))">
+                                        @value
+                                    </a>
+                                </p>
+                            </div>
+                            <div style="float:left">
+                                <div class="dropdown">
+                                    <span style="color:darkslategray" class="oi oi-chevron-right" aria-hidden="true"></span>
+                                    <div class="dropdown-content">
+                                        @{
+                                            if (M_MFlag[index] == Internal)
+                                            {
+                                                <a @onclick="(() => T_TaskListDetails(M_MID[index], index, Internal))" href="#"><span style="color:darkslategray" title="View Internal Tasklist" class="oi oi-eye" aria-hidden="true"></span></a>
+                                            }
+                                        }
+                                        @{
+                                            if (M_MFlag[index] == External)
+                                            {
+                                                <a @onclick="(() => T_TaskListDetails(M_MID[index], index, External))" href="#"><span style="color:darkslategray" title="View External Tasklist" class="oi oi-external-link" aria-hidden="true"></span></a>
+                                            }
+                                        }
+                                        <a @onclick="(() => NavigateToTaskListAdd(M_MID[index]))" href="#"><span style="color:darkslategray" title="Add Tasklist" class="oi oi-plus" aria-hidden="true"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @*TaskList*@
+            <div class="column" style="background-color:#bbb;">
+                <h3 style="width:80%; float:left; padding-left: 10px;">TaskLists</h3>
+                @if (TasklistCount == 0)
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Tasklist_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in T_TTaskListName.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <div style="float:left; width:95%;">
+                                <p>
+                                    <a href="" @onclick="(()=> T_TTaskListSelect(index))">
+                                        @value
+                                    </a>
+                                </p>
+                            </div>
+                            <div style="float:left">
+                                <div class="dropdown">
+                                    <span style="color:darkslategray" class="oi oi-chevron-right" aria-hidden="true"></span>
+                                    <div class="dropdown-content">
+                                        <a @onclick="(() => SpecficTaskForTasklist(T_TaskListTaskUrl[index], index))" href="#"><span style="color:darkslategray" title="View Task" class="oi oi-eye" aria-hidden="true"></span></a>
+                                        <a @onclick="(() => NavigateToTaskAdd(T_TasklistId[index]))" href="#"><span style="color:darkslategray" title="Add Task" class="oi oi-plus" aria-hidden="true"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @*Tasks*@
+            <div class="column" style="background-color:#ccc;">
+                <h3 style="width:80%; float:left; padding-left: 10px;">Tasks</h3><a style="float: right; width:10%" href="" @onclick="RefreshTask"><span style="color:black; width:50%;" title="Refresh Task" class="oi oi-reload" aria-hidden="true"></span></a>
+                @if (TaskFile == " ")
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Task_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in T_TName.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <p><a href="" @onclick="(()=> T_TTaskSelect(index))"> @value</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else if (Selection == false)
+{
+    @*style="display:none;visibility:visible"*@
+    <div class="Wrap">
+        <div class="row">
+            @*Issues*@
+            <div class="column" style="background-color:#bbb;">
+                @*<h2 class="center">Issues</h2>*@
+                <h3 style="width:80%; float:left; padding-left: 10px;">Issues</h3><a style="float: right; width:10%" href="" @onclick="NavigateToIssueAdd"><span style="color:black; width:50%;" title="Add new Issue" class="oi oi-plus" aria-hidden="true"></span></a><a style="float: right; width:10%" href="" @onclick="RefreshIssue"><span style="color:black; width:50%;" title="Refresh Issue" class="oi oi-reload" aria-hidden="true"></span></a>
+                @if (IssueFile == " ")
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Issue_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in I_IName.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <p><a href="" @onclick="(()=> I_IIssueSelect(index))"> @value</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @*Documents*@
+            <div class="column" style="background-color:#ddd;">
+                <h2 class="center">Documents</h2>
+                @if (Document_count == 0)
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Document_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in D_DDName.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <p><a href="" @onclick="(()=> D_DDocumentSelect(index))"> @value</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @*Folders*@
+            <div class="column" style="background-color:#ddd;">
+                <h2 class="center">Folder</h2>
+                @if (Document_count == 0)
+                {
+                    <center>
+                        <div class="isa_error  center">
+                            @Document_Error
+                        </div>
+                    </center>
+                }
+                @foreach (var item in res_name.Select((value, i) => new { i, value }))
+                {
+                    var value = item.value;
+                    var index = item.i;
+                    <div class="card">
+                        <div class="container">
+                            <p><a href="" > @value</a></p> 
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+}

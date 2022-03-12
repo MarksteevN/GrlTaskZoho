@@ -1,0 +1,25 @@
+﻿@page "/TaskList/form"
+
+<PageTitle>Add TaskList</PageTitle>
+<h3>Create TaskList</h3>
+
+<EditForm Model="taskListName" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <div style="width:60%" class="form-group">
+        <label style="text-align:left">TaskList Name : </label>
+        <InputText class="form-control" @bind-Value="taskListName.Name" />
+        <ValidationMessage For="@(() => taskListName.Name)" />
+
+        <label>Flag : </label>
+        <select class="form-control" @bind="taskListName.flag">
+            <option selected disabled>Choose flag</option>
+            <option value="internal">Internal</option>
+            <option value="external">External</option>
+        </select>
+        <ValidationMessage For="@(() => taskListName.flag)" />
+    </div>
+    <br />
+    <button class="button button11" type="submit">Add</button>
+    <button class="button button11" onclick="window.close();">Close</button>
+    <button class="button button22" @onclick="reset" @onclick:preventDefault>Reset</button>
+</EditForm>

@@ -1,0 +1,107 @@
+﻿@page "/Documents_Details"
+
+<PageTitle>@res_name</PageTitle>
+
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center" colspan="2">@res_name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th> Folder Name </th>
+            <td> @res_name </td>
+        </tr>
+        @foreach (var item in res_name.Select((value, i) => new { i, value }))
+        {
+            var value = item.value;
+            var index = item.i;
+            <tr>
+                <td>@value</td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+<br />
+<center>
+    @*<button class="button button2" @onclick="NavigateToNewTab">More Details...</button>
+    <button class="button button2" @onclick="RefreshSelectedIssue">Refresh</button>*@
+    <button class="button button2" onclick="window.close();">Close</button>
+</center>
+@code {
+    public static List<string> res_name { get; set; }
+    public static List<string> res_id { get; set; }
+    public static List<string> FD_Name { get; set; }
+    public static List<string> parent_id { get; set; }
+    public static List<string> sdf { get; set; }
+    //public static List<string> FD_Count { get; set; }
+    public static List<string> FD_url { get; set; }
+    public static int GetFolderIndexNo { get; set; }
+    public static int x { get; set; }
+    UserAuthenticationHelper _UserAuth = new UserAuthenticationHelper();
+
+    protected override void OnInitialized()
+    {
+        res_name = new List<string>();
+        res_id = new List<string>();
+        sdf = new List<string>();
+        if (File.Exists(Index.File_Path_Document))
+        {
+            Folder_Details(Index.File_Path_Document);
+        }
+        else
+        {
+            Folder_Details(Index.DefaultFolderFilepath);
+            Console.WriteLine("Error Occured While printing");
+        }
+    }
+
+    public void Folder_Details(string Filepath)
+    {
+        //document_details();
+        //string myjson = File.ReadAllText(Filepath);
+        //var myjsonObje = JsonConvert.DeserializeObject<FolderDetails>(myjson);
+        //for(x=0; x<myjsonObje.folders.Count; x++)
+        //{
+        //    res_id.Add(myjsonObje.folders[x].res_id);
+        //}
+        //string indnO = parent_id[GetFolderIndexNo];
+        //document_details();
+        //if(indnO == res_id[x])
+        //{
+        //    sdf.Add(res_id);
+        //}
+    }
+    public void document_details()
+    {
+            UserAuthenticationHelper.ClearAllList(FD_Name, FD_url, parent_id);
+        string File_Path = $"{NavMenu.All_Documents_list}";
+        if (!File.Exists(File_Path))
+        {
+            string url1 = NavMenu.Document_url;
+            RegenerateAcc_Token.Operations_View(url1, RegenerateAcc_Token.Access_Token, _Get);
+            System.IO.File.WriteAllText(File_Path, RegenerateAcc_Token.QueryResponse_Json);
+        }
+
+        string myJsonString = File.ReadAllText(File_Path);
+
+        var myJsonObject = JsonConvert.DeserializeObject<DocumentDetail>(myJsonString);
+        if (myJsonObject != null)
+        {
+            for (var i = 0; i < myJsonObject.dataobj.Count; i++)
+            {
+                FD_Name.Add(myJsonObject.dataobj[i].res_name);
+                FD_url.Add(myJsonObject.dataobj[i].download_url);
+                parent_id.Add(myJsonObject.dataobj[i].parent_id);
+            }
+        }
+    }
+    public int GetFolderIndex(int indNO)
+    {
+        GetFolderIndexNo = indNO;
+        return indNO;
+    }
+}

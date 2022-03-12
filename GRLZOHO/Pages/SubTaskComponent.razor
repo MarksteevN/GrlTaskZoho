@@ -1,0 +1,56 @@
+﻿@page "/projectlist/task/taskdetails/SubTask"
+
+<table class="table table-bordered table-striped mb-0">
+    <thead class="bg-warning">
+        <tr>
+            <th class="center">SubTask Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in SubTask_Name.Select((value, i) => new { i, value }))
+        {
+            var value = item.value;
+            var index = item.i;
+            <tr>
+                <td><a href="projectlist/task/taskdetails/SubTask/Details_Sub" @onclick = "(()=> Select_ST(index))"> @value</a></td>                
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    public List<string>? ST_Link { get; set; }
+    public List<string>? SubTask_Name { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ST_Link = new List<string>();
+        SubTask_Name = new List<string>();
+        SubTask_all();
+    }
+
+    public void SubTask_all()
+    {
+        string File_Path = $"{NavMenu.All_SubTask_list}";
+        System.IO.File.WriteAllText(File_Path, RegenerateAcc_Token.QueryResponse_Json);
+        var myJsonString = File.ReadAllText(File_Path);
+
+        //string filep = Directory.GetCurrentDirectory();
+        //System.IO.File.WriteAllText(filep + @"\Appdata\All_SubTask.txt", RegenerateAcc_Token.QueryResponse_Json);
+        //string FilePath = @"D:\Marksteev_GRL\Github Files\GRLZOHO\GRLZOHO\Appdata\All_SubTask.txt";
+        //var myJsonString = File.ReadAllText(FilePath);
+        var myJsonObject = JsonConvert.DeserializeObject<SubTaskDetails>(myJsonString);
+
+        for (var i = 0; i < myJsonObject.tasks.Count; i++)
+        {
+            SubTask_Name.Add(myJsonObject.tasks[i].name);
+            ST_Link.Add(myJsonObject.tasks[i].link.self.url);
+        }
+    }
+    public void Select_ST(int indNo)
+    {
+            HorizontalNavMenu horizontalNavMenu = new HorizontalNavMenu();
+            horizontalNavMenu.St_Pt_Url(ST_Link[indNo]);
+    }
+}
